@@ -1,0 +1,47 @@
+<div class="container pt-5 pb-5 bg-light">
+    <h2 class="text-center ">{{ editUser ? "Update User" : "Add User" }}</h2>
+    <form [formGroup]="userForm" (ngSubmit)="handleSubmit()" class="m-auto mt-4">
+        <div class="row justify-content-md-center mb-3">
+            <label for="name" class="col col-lg-5">
+                <p>Enter Full Name</p>
+                <input id="name" class="form-control" type="text" formControlName="name" />
+                <div *ngIf="userForm.controls.name.invalid && userForm.controls.name.touched" class="text-danger">*
+                    Please
+                    enter a valid name
+                </div>
+            </label>
+        </div>
+        <div class="row justify-content-md-center mb-3">
+            <label for="email" class="col col-lg-5">
+                <p>Enter Email</p>
+                <input id="email" class="form-control" type="text" formControlName="email" />
+                <div *ngIf="userForm.controls.email.invalid && userForm.controls.email.touched" class="text-danger">*
+                    Please
+                    enter a valid email
+                </div>
+            </label>
+        </div>
+        <div formGroupName="address">
+            <div class="row justify-content-md-center mb-3">
+                <label for="street" class="col col-lg-3">
+                    <p>Enter Street</p>
+                    <input id="street" class="form-control" type="text" formControlName="street" />
+                </label>
+                <label for="city" class="col col-lg-2">
+                    <p>Enter City</p>
+                    <input id="city" class="form-control" type="text" formControlName="city" />
+                </label>
+            </div>
+            <div class="row justify-content-md-center mb-5">
+                <label for="zipcode" class="col col-lg-5">
+                    <p>Enter Zip Code</p>
+                    <input id="zipcode" class="form-control" type="text" formControlName="zipcode" />
+                </label>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <button type="submit" class="col col-lg-4 btn btn-primary" [disabled]="userForm.invalid">Submit</button>
+
+        </div>
+    </form>
+</div>

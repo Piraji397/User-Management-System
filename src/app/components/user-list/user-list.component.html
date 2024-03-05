@@ -1,0 +1,28 @@
+<div class="container mt-5">
+    <button class="btn btn-primary float-end mb-2" (click)="addNewUser()">Add New User</button>
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <td>User Id</td>
+                <td>User Name</td>
+                <td>Email Id</td>
+                <td>Address</td>
+                <td>Actions</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of this.userService.userList">
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.address.street }}, {{ user.address.city }} - {{ user.address.zipcode }}</td>
+                <td>
+                    <button class="btn-sm btn-info me-2"><fa-icon [icon]="edit"
+                            (click)="editUser(user)"></fa-icon></button>
+                    <button class="btn-sm btn-danger" (click)="deleteUser(user.id)"><fa-icon
+                            [icon]="delete"></fa-icon></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
