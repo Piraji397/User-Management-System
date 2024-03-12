@@ -1,5 +1,5 @@
 <div class="container pt-5 pb-5 bg-light">
-    <h2 class="text-center ">{{ editUser ? "Update User" : "Add User" }}</h2>
+    <h2 class="text-center ">{{ this.dataService.editUser ? "Update User" : "Add User" }}</h2>
     <form [formGroup]="userForm" (ngSubmit)="handleSubmit()" class="m-auto mt-4">
         <div class="row justify-content-md-center mb-3">
             <label for="name" class="col col-lg-5">

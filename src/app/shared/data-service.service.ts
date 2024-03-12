@@ -6,6 +6,7 @@ import { User } from '../models/user.model';
   providedIn: 'root',
 })
 export class DataServiceService {
+  editUser: boolean = false;
   initialData: User = {
     id: 1,
     name: 'new user',

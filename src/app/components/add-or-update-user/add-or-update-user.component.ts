@@ -11,7 +11,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./add-or-update-user.component.scss'],
 })
 export class AddOrUpdateUserComponent implements OnInit, OnDestroy {
-  editUser: boolean = false;
   userForm: FormGroup;
   userSubscription!: Subscription;
 
@@ -19,7 +18,7 @@ export class AddOrUpdateUserComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private userService: UserServiceService,
     private router: Router,
-    private dataService: DataServiceService
+    public dataService: DataServiceService
   ) {
     this.userForm = fb.group({
       id: [''],
@@ -40,7 +39,7 @@ export class AddOrUpdateUserComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    if (this.editUser) {
+    if (this.dataService.editUser) {
       this.userSubscription = this.dataService.user.subscribe((data) => {
         // console.log(data);
         this.userForm.setValue({
@@ -53,18 +52,18 @@ export class AddOrUpdateUserComponent implements OnInit, OnDestroy {
             zipcode: data.address.zipcode,
           },
         });
-        this.editUser = true;
+        this.dataService.editUser = true;
       });
     }
   }
 
   handleSubmit() {
     // console.log('called', this.userForm.value);
-    if (!this.editUser) {
+    if (!this.dataService.editUser) {
       this.userService.addUser(this.userForm.value);
     } else {
       this.userService.updateUser(this.userForm.value);
-      this.editUser = false;
+      this.dataService.editUser = false;
     }
     this.userForm.reset();
     this.router.navigateByUrl('/');

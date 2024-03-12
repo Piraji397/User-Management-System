@@ -30,6 +30,7 @@ export class UserListComponent implements OnInit {
 
   editUser(user: User) {
     this.dataService.user.next(user);
+    this.dataService.editUser = true;
     this.router.navigateByUrl('/addUser');
   }
 
